@@ -1,9 +1,15 @@
 body {
   text-align: center;
+  background-color: #282828;
+  color: white;
 }
 
 h1 {
-  color: purple;
+
+}
+
+li {
+
 }
 
 #header {
@@ -11,7 +17,7 @@ h1 {
   padding-bottom: 30px;
   margin: auto;
   width: 550px;
-  border-style: dashed;
+  border-style: outset;
   border-color: #FFF
 }
  #header li {
@@ -30,6 +36,7 @@ h1 {
    width: 350px;
    padding-top: 35px;
    padding-bottom: 50px;
+
  }
 
  #answerbox{
@@ -39,12 +46,14 @@ h1 {
    padding-top: 35px;
    padding-bottom: 50px;
    width: 99%;
+
  }
 
  #cardPrompt {
    text-align: center;
    position: relative;
    width: 99%;
+
  }
 
  #buttons{
@@ -56,3 +65,7 @@ h1 {
  .answerBoxFormat{
    resize: none;
  }
+
+#score {
+  color: white;
+}

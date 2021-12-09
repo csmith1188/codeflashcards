@@ -5,11 +5,16 @@ body {
 }
 
 h1 {
-
+  color: cyan;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 li {
+  color: white;
+}
 
+p {
+  color: darkorange;
 }
 
 #header {
@@ -17,8 +22,7 @@ li {
   padding-bottom: 30px;
   margin: auto;
   width: 550px;
-  border-style: outset;
-  border-color: #FFF
+
 }
  #header li {
    text-align: left;
@@ -53,7 +57,7 @@ li {
    text-align: center;
    position: relative;
    width: 99%;
-
+   color: darkorange;
  }
 
  #buttons{
@@ -68,4 +72,11 @@ li {
 
 #score {
   color: white;
+  border-style: solid;
+  border-color: darkorange;
+  border-width: thin;
+}
+#scoreBox {
+  margin-left: 750px;
+  margin-right: 750px;
 }

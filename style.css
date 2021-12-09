@@ -1,0 +1,71 @@
+body {
+  text-align: center;
+  background-color: #282828;
+  color: white;
+}
+
+h1 {
+
+}
+
+li {
+
+}
+
+#header {
+  text-align: center;
+  padding-bottom: 30px;
+  margin: auto;
+  width: 550px;
+  border-style: outset;
+  border-color: #FFF
+}
+ #header li {
+   text-align: left;
+ }
+
+ #line2 {
+   display: block;
+   text-align: left;
+   margin-left: 20px;
+ }
+
+ #multiplechoice {
+   text-align: left;
+   margin: auto;
+   width: 350px;
+   padding-top: 35px;
+   padding-bottom: 50px;
+
+ }
+
+ #answerbox{
+   text-align: center;
+   margin: auto;
+   width: 550px;
+   padding-top: 35px;
+   padding-bottom: 50px;
+   width: 99%;
+
+ }
+
+ #cardPrompt {
+   text-align: center;
+   position: relative;
+   width: 99%;
+
+ }
+
+ #buttons{
+   text-align: center;
+   padding-top: 20px;
+   width: 98%;
+ }
+
+ .answerBoxFormat{
+   resize: none;
+ }
+
+#score {
+  color: white;
+}

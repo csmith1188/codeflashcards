@@ -101,6 +101,7 @@
           questionType(mistakePile);
           console.log(mistakePile[cardIndex]);
           console.log(mistakePile[cardIndex][0][1]);
+          deselectButtons();
           cardPrompt.innerHTML = '<b>' + mistakePile[cardIndex][0] + ':</b><br>' + parseMeta(mistakePile[cardIndex][1]);
 
         } else {
@@ -128,7 +129,7 @@
         if (data.length) {
           if (cardCheck == data[cardIndex][2].replaceAll(' ', '')) {
             discardPile++;
-            results.innerHTML = `<span style="color: green; font-family: system, consolas;">` + parseMeta(data[cardIndex][2]) + `</span>`;
+            results.innerHTML = `<span style="color: lime; font-family: system, consolas;">` + parseMeta(data[cardIndex][2]) + `</span>`;
             data.splice(cardIndex, 1)
           } else {
             results.innerHTML = `<span style="color: red; font-family: system, consolas;">` + parseMeta(data[cardIndex][2]) + `</span>`;
@@ -137,7 +138,7 @@
         } else if (mistakePile.length) {
           if (cardCheck == mistakePile[cardIndex][2].replaceAll(' ', '')) {
             discardPile++;
-            results.innerHTML = `<span style="color: green; font-family: system, consolas;">` + parseMeta(mistakePile[cardIndex][2]) + `</span>`;
+            results.innerHTML = `<span style="color: lime; font-family: system, consolas;">` + parseMeta(mistakePile[cardIndex][2]) + `</span>`;
             mistakePile.splice(cardIndex, 1)
           } else {
             results.innerHTML = `<span style="color: red; font-family: system, consolas;">` + parseMeta(mistakePile[cardIndex][2]) + `</span>`;
@@ -160,7 +161,7 @@
         if (data.length) {
           if (data[cardIndex][4] === eleValue) {
             console.log("Correct")
-            results.innerHTML = `<span style="color: green; font-family: system, consolas;">` + data[cardIndex][2][data[cardIndex][4] - 1] + `</span>`;
+            results.innerHTML = `<span style="color: lime; font-family: system, consolas;">` + data[cardIndex][2][data[cardIndex][4] - 1] + `</span>`;
             discardPile++;
             data.splice(cardIndex, 1)
           } else {
@@ -171,7 +172,7 @@
         } else if (mistakePile.length) {
           if (mistakePile[cardIndex][4] === eleValue) {
             console.log("Correct")
-            results.innerHTML = `<span style="color: green; font-family: system, consolas;">` + mistakePile[cardIndex][2][mistakePile[cardIndex][4] - 1] + `</span>`;
+            results.innerHTML = `<span style="color: lime; font-family: system, consolas;">` + mistakePile[cardIndex][2][mistakePile[cardIndex][4] - 1] + `</span>`;
             discardPile++;
             mistakePile.splice(cardIndex, 1)
           } else {
@@ -179,15 +180,6 @@
             results.innerHTML = `<span style="color: red; font-family: system, consolas;">` + mistakePile[cardIndex][0][2][mistakePile[cardIndex][0][4] - 1] + `</span>`;
             mistakePile.push(mistakePile.splice(cardIndex, 1)[0]);
           }
-          /* if (data[cardIndex][4] === eleValue) {
-             console.log("You win")
-             results.innerHTML = `<span style="color: green; font-family: system, consolas;">` + data[cardIndex][2][data[cardIndex][4] - 1] + `</span>`;
-             discardPile++;
-             data.splice(cardIndex, 1)
-           } else {
-             console.log("You SUCK")
-             results.innerHTML = `<span style="color: red; font-family: system, consolas;">` + data[cardIndex][2][data[cardIndex][4] - 1] + `</span>`;
-             mistakePile.push(mistakePile.splice(cardIndex)); */
         }
       }
     }
@@ -212,6 +204,8 @@
         multchoice4.innerHTML = xyz[3];
       }
     }
+
+
     function resetCards() {
       location.reload();
     }

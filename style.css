@@ -82,6 +82,13 @@ p {
 #scoreBox {
   margin-left: 750px;
   margin-right: 750px;
+  top: 50px;
+}
+
+#mainBody{
+  top: 250px;
+  position: fixed;
+  right: 50px;
 }
 
 
@@ -97,9 +104,13 @@ p {
 }
 
 #dropMenu{
-  position: absolute;
-  top: 10px;
-  right: 610px;
+  position: relative;
+  margin: auto;
+}
+
+#text{
+  position: fixed;
+  top: 150px;
 }
 
 /* The container <div> - needed to position the dropdown content */

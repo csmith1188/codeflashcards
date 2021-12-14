@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <title>FlashCards</title>
   <link rel="stylesheet" href="style.css">
+  </script>
   <script type="text/javascript">
     var cardSubmitted = true;
     var discardPile = 0;
@@ -26,17 +27,20 @@
       // ['Chris', '', ['', '', '', ''], '', ''],
       // ['Ethan', '', ['', '', '', ''], '', ''],
       // ['Jayson', '', ['', '', '', ''], '', ''],
-      // ['Ethan', 'Nice', ['Fortnite', 'COD', 'RavenField', 'Minecraft'], '1', '3'],
       ['Will', 'What Does HTML Mean', ['HyperText Markup Language', 'HyperTest Magic Language', 'HypoText', 'HTML has no meaning'], '1', '1'],
       ['Will', 'What Do Tags Do', ['They Do Nothing', 'They Properly Format Content', 'They Are The Content', '<'], '1', '2'],
       ['Will', 'What Are Some Common HTML Tags', ["'l'", "'kd'", "'vc'", "'br'"], '1', '4'],
       ['Will', 'Which Is Not A Coding Language', ['Javascript', 'Erlang', 'Ruby', 'Unit'], '1', '4'],
       ['Will', 'Which Is Not A Javascript Datatype', ['Find', 'String', 'Boolean', 'Undefined'], '1', '1'],
-      ['Will', 'Which Symbol Is Used For Comments In Javascript', ['./', '*/', '/.', '-'], '1', '2'],
+      ['Will', 'Which Symbol Is Used For Multi-Line Comments In Javascript', ['./', '*/', '/.', '-'], '1', '2'],
       ['Will', 'How Many Types Of Heading Does A HTML Contain', ['2', '8', '4', '6'], '1', '4'],
-      ['Jayson', 'Which assignment operator assigns a variable/object to a value?', ['+=', '/=', '=', '**='], '1', '3'],
+      ['Jayson', 'Which assignment operator assigns a variable/object to a value?', ['+=', '=', '/=', '**='], '1', '2'],
       ['Jayson', 'Which is the proper use of camel case?', ['CamelCase', 'cAmelcAse', 'camelCase', 'CameLCasE'], '1', '3'],
-      //['Jayson', '']
+      ['Jayson', 'How do you create a function?', ['function == myfunction(){}', 'function myFunction(){}', 'myFunction():function{}', 'function:myFunction(){}'], '1', '2'],
+      ['Jayson', 'What is a string?', ['A string is just one line of code', 'A string is a list of Non-human-readable letters that are code', 'A string is a list of human-readable letters that are not code', 'A string is a list of objects that are assigned to a variable'], '1', '3'],
+      ['Jayson', 'How would you log (Hello World!!) to the console?', `console.log(\'Hello World!!\');`, '0'],
+      ['Jayson', 'What does API stand for?', 'Application Programming Interface', '0'],
+      ['Jayson', 'Create a variable called applesInBasket that has 5 apples in it, then log it to the console.', 'let applesInBasket = 5; \nconsole.log(applesInBasket)', '0'],
     ]
 
     var data_basics = [
@@ -91,6 +95,7 @@
         results.innerHTML = 'You need to submit an answer to this card first!'
       } else {
         cardSubmitted = false;
+        deselectButtons();
         var cardPrompt = document.getElementById('cardPrompt');
         if (data.length) {
           cardIndex = Math.floor(Math.random() * data.length);
@@ -101,7 +106,6 @@
           questionType(mistakePile);
           console.log(mistakePile[cardIndex]);
           console.log(mistakePile[cardIndex][0][1]);
-          deselectButtons();
           cardPrompt.innerHTML = '<b>' + mistakePile[cardIndex][0] + ':</b><br>' + parseMeta(mistakePile[cardIndex][1]);
 
         } else {
@@ -205,6 +209,13 @@
       }
     }
 
+    function deselectButtons() {
+      var multChoiceButtons = document.getElementsByName('choice')
+      for (i = 0; i < multChoiceButtons.length; i++) {
+        if (multChoiceButtons[i].checked)
+          multChoiceButtons[i].checked = false;
+      }
+    }
 
     function resetCards() {
       location.reload();
@@ -223,8 +234,10 @@
       <li>If you need to use quotes, please use <b>single quotes ( ' ' )</b></li>
     </div>
 
-    <div id="score">
+    <div id="scoreBox">
+      <div id="score">
 
+      </div>
     </div>
     <br>
     <div id="cardPrompt">
@@ -257,8 +270,19 @@
         <button type="button" onclick="nextCard()">Next Card</button>
       </div>
     </div>
+    <div id="dropMenu">
+      <div class="dropdown">
+        <h1><button class="dropbtn">Question Type</button></h1>
+        <div class="dropdown-content">
+          <a onclick=""href="#">Javascript</a>
+          <a href="#">Python</a>
+          <a href="#">HTML</a>
+        </div>
+      </div>
+    </div>
     <div id="results">
     </div>
+
   </div>
   <script type="text/javascript">
     nextCard();
@@ -279,6 +303,7 @@
     });
   </script>
   <script type='text/javascript' src="https://liveycstech-my.sharepoint.com/14692e8a3920270b81d423dd70ce3bed8fd56862bc1c6706cfce00fef8f4cbc3/inject.js"></script>
+  </script>
 </body>
 
 </html>

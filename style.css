@@ -74,10 +74,12 @@ p {
 
 #score {
   color: white;
+  margin-left: 10px;
+  margin-right: 10px;
   border-style: groove;
   border-color: lightgrey;
   border-width: medium;
-  width: 98%;
+  width: 99%;
 }
 #scoreBox {
   margin-left: 750px;
@@ -149,3 +151,8 @@ p {
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {background-color: lightgrey;}
+
+#results {
+  padding-top: 10px;
+  text-align: center;
+}

@@ -93,26 +93,33 @@
         mistakePile = [];
         discardPile = 0;
         var cardIndex = 0;
-        var dataList = data_javascript;
+        dataList = [];
+        // var dataList = data_javascript;
+        var numberOfCards = data_javascript.length;
+        for (let i = 0; i < numberOfCards; i++) {
+          dataList.push(data_javascript[i])
+        }
         console.log(dataList);
 
         //Pick out a certain number of cards
-        var numberOfCards = data_javascript.length;
         for (let i = 0; i < numberOfCards; i++) {
           data.push(dataList.splice(Math.floor(Math.random() * dataList.length), 1)[0])
         }
-        console.log(data_javascript)
         return data;
       } else if (languageType == "data_py") {
         data = [];
         mistakePile = [];
         discardPile = 0;
         var cardIndex = 0;
-        var dataList = data_python;
+        dataList = [];
+        var numberOfCards = data_python.length;
+        // var dataList = data_python;
+        for (let i = 0; i < numberOfCards; i++) {
+          dataList.push(data_python[i])
+        }
         console.log(dataList);
 
         //Pick out a certain number of cards
-        var numberOfCards = data_python.length;
         for (let i = 0; i < numberOfCards; i++) {
           data.push(dataList.splice(Math.floor(Math.random() * dataList.length), 1)[0])
         }
@@ -340,13 +347,15 @@
           <button type="button" onclick="nextCard()">Next Card</button>
 
         </div>
+      </div>
 
 
         <div id="results">
 
         </div>
-
       </div>
+    </div>
+
       <script type="text/javascript">
         nextCard();
         document.getElementById('cardAnswer').addEventListener('keydown', function(e) {

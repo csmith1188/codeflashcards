@@ -84,23 +84,50 @@
           data.push(dataList.splice(Math.floor(Math.random() * dataList.length), 1)[0])
         }
     */
-    var languageType = data_javascript;
+    var languageType = "data_java";
 
     function changeLanguage() {
       console.log(languageType);
-      data = [];
-      mistakePile = [];
-      discardPile = 0;
-      var cardIndex = 0;
-      var dataList = languageType;
-      console.log(dataList);
+      if (languageType == "data_java") {
+        data = [];
+        mistakePile = [];
+        discardPile = 0;
+        var cardIndex = 0;
+        dataList = [];
+        // var dataList = data_javascript;
+        var numberOfCards = data_javascript.length;
+        for (let i = 0; i < numberOfCards; i++) {
+          dataList.push(data_javascript[i])
+        }
+        console.log(dataList);
 
-      //Pick out a certain number of cards
-      var numberOfCards = dataList.length;
-      for (let i = 0; i < numberOfCards; i++) {
-        data.push(languageType.splice(Math.floor(Math.random() * dataList.length), 1)[0])
+        //Pick out a certain number of cards
+        for (let i = 0; i < numberOfCards; i++) {
+          data.push(dataList.splice(Math.floor(Math.random() * dataList.length), 1)[0])
+        }
+        return data;
+      } else if (languageType == "data_py") {
+        data = [];
+        mistakePile = [];
+        discardPile = 0;
+        var cardIndex = 0;
+        dataList = [];
+        var numberOfCards = data_python.length;
+        // var dataList = data_python;
+        for (let i = 0; i < numberOfCards; i++) {
+          dataList.push(data_python[i])
+        }
+        console.log(dataList);
+
+        //Pick out a certain number of cards
+        for (let i = 0; i < numberOfCards; i++) {
+          data.push(dataList.splice(Math.floor(Math.random() * dataList.length), 1)[0])
+        }
+        return data;
+      } else {
+        console.log("It broke");
       }
-      return data;
+
 
     }
 
@@ -121,6 +148,7 @@
 
     function resetData() {
       var data = changeLanguage();
+      console.log(data)
       nextCard();
     }
 
@@ -159,7 +187,6 @@
 
     function submitCard() {
       var score = document.getElementById('score')
-      var results = document.getElementById('results')
       if (cardSubmitted) {
         results.innerHTML = 'You already submitted this card!'
       } else {
@@ -170,10 +197,11 @@
         if (data.length) {
           if (cardCheck == data[cardIndex][2].replaceAll(' ', '')) {
             discardPile++;
-            results.innerHTML = `<span style="color: lime; font-family: system, consolas;">` + parseMeta(data[cardIndex][2]) + `</span>`;
+            results.innerHTML = `<span style="color: lime; font-family: system, consolas;">` + data[cardIndex][2] + `</span>`;
             data.splice(cardIndex, 1)
           } else {
-            results.innerHTML = `<span style="color: red; font-family: system, consolas;">` + parseMeta(data[cardIndex][2]) + `</span>`;
+            console.log(data[cardIndex][2]);
+            results.innerHTML = `<span style="color: red; font-family: system, consolas;">` + data[cardIndex][2] + `</span>`;
             mistakePile.push(data.splice(cardIndex, 1)[0]);
           }
         } else if (mistakePile.length) {
@@ -269,8 +297,8 @@
         <div class="dropdown">
           <h1><button class="dropbtn">Question Type</button></h1>
           <div class="dropdown-content">
-            <a onclick="languageTypePicker(data_javascript)" href="#">Javascript</a>
-            <a onclick="languageTypePicker(data_python)" href="#">Python</a>
+            <a onclick="languageTypePicker('data_java')" href="#">Javascript</a>
+            <a onclick="languageTypePicker('data_py')" href="#">Python</a>
             <a href="#">HTML</a>
           </div>
         </div>
@@ -319,12 +347,15 @@
           <button type="button" onclick="nextCard()">Next Card</button>
 
         </div>
+      </div>
 
 
         <div id="results">
-        </div>
 
+        </div>
       </div>
+    </div>
+
       <script type="text/javascript">
         nextCard();
         document.getElementById('cardAnswer').addEventListener('keydown', function(e) {

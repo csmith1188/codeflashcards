@@ -141,6 +141,11 @@ p {
   margin: auto;
 }
 
+#dropMenu1 {
+  position: relative;
+  margin: auto;
+}
+
 #text {
   position: fixed;
   top: 150px;

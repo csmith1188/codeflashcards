@@ -15,21 +15,21 @@
       // ['Chris', '', ['', '', '', ''], '', ''],
       // ['Ethan', '', ['', '', '', ''], '', ''],
       // ['Jayson', '', ['', '', '', ''], '', ''],
-      ['Will', 'What Does HTML Mean', ['HyperText Markup Language', 'HyperTest Magic Language', 'HypoText', 'HTML has no meaning'], '1', '1'],
+      //['Will', 'What Does HTML Mean', ['HyperText Markup Language', 'HyperTest Magic Language', 'HypoText', 'HTML has no meaning'], '1', '1'],
       ['Will', 'What Do Tags Do', ['They Do Nothing', 'They Properly Format Content', 'They Are The Content', '<'], '1', '2'],
-      ['Will', 'What Are Some Common HTML Tags', ["'l'", "'kd'", "'vc'", "'br'"], '1', '4'],
+      //['Will', 'What Are Some Common HTML Tags', ["'l'", "'kd'", "'vc'", "'br'"], '1', '4'],
       ['Will', 'Which Is Not A Coding Language', ['Javascript', 'Erlang', 'Ruby', 'Unit'], '1', '4'],
       ['Will', 'Which Is Not A Javascript Datatype', ['Find', 'String', 'Boolean', 'Undefined'], '1', '1'],
       ['Will', 'Which Symbol Is Used For Multi-Line Comments In Javascript', ['./', '*/', '/.', '-'], '1', '2'],
-      ['Will', 'How Many Types Of Heading Does A HTML Contain', ['2', '8', '4', '6'], '1', '4'],
+      //['Will', 'How Many Types Of Heading Does A HTML Contain', ['2', '8', '4', '6'], '1', '4'],
       ['Jayson', 'Which assignment operator assigns a variable/object to a value?', ['+=', '=', '/=', '**='], '1', '2'],
       ['Jayson', 'Which is the proper use of camel case?', ['CamelCase', 'cAmelcAse', 'camelCase', 'CameLCasE'], '1', '3'],
       ['Jayson', 'How do you create a function?', ['function == myfunction(){}', 'function myFunction(){}', 'myFunction():function{}', 'function:myFunction(){}'], '1', '2'],
-      ['Jayson', 'What is a string?', ['A string is just one line of code', 'A string is a list of Non-human-readable letters that are code', 'A string is a list of human-readable letters that are not code',
-        'A string is a list of objects that are assigned to a variable'
-      ], '1', '3'],
-      ['Jayson', 'How would you log (Hello World!!) to the console>?', 'console.log(Hello World!!);', '0'],
-      //['Jayson', '']
+      ['Jayson', 'What is a string?', ['A string is just one line of code', 'A string is a list of Non-human-readable letters that are code', 'A string is a list of human-readable letters that are not code', 'A string is a list of objects that are assigned to a variable'], '1', '3'],
+      ['Jayson', 'How would you log (Hello World!!) to the console?', `console.log(\'Hello World!!\');`, '0'],
+      ['Jayson', 'What does API stand for?', 'Application Programming Interface', '0'],
+      ['Jayson', 'Create a variable called applesInBasket that has 5 apples in it, then log it to the console.', 'let applesInBasket = 5; \nconsole.log(applesInBasket)', '0'],
+      //['Jayson', ''],
     ]
 
     var data_python = [
@@ -73,21 +73,18 @@
 
     ]
 
-    /*
-        var dataList = data_functions;
-        var data = [];
-        var cardIndex = 0;
+    var data_html = [
+      //['Chris', '', ['', '', '', ''], '', ''],
+      ['Chris', 'Indicates the beginning and end of an html document', ["&lthtml>", "&lt/html>", "&lthtml> &lt/html>", "None"], '1', '3'],
+      ['Chris', 'What tag bolds the Text?', ["&ltb>", "&ltB>", "&ltBold> &ltbold>", "None"], '1', '1'],
+    ]
 
-        //Pick out a certain number of cards
-        var numberOfCards = data_functions.length;
-        for (let i = 0; i < numberOfCards; i++) {
-          data.push(dataList.splice(Math.floor(Math.random() * dataList.length), 1)[0])
-        }
-    */
-    var languageType = "data_java";
+    var languageType = "";
 
     function changeLanguage() {
+
       console.log(languageType);
+      cardSubmitted = true;
       if (languageType == "data_java") {
         data = [];
         mistakePile = [];
@@ -124,6 +121,26 @@
           data.push(dataList.splice(Math.floor(Math.random() * dataList.length), 1)[0])
         }
         return data;
+      } else if (languageType == "data_html") {
+        data = [];
+        mistakePile = [];
+        discardPile = 0;
+        var cardIndex = 0;
+        dataList = [];
+        var numberOfCards = data_html.length;
+        // var dataList = data_html;
+        for (let i = 0; i < numberOfCards; i++) {
+          dataList.push(data_html[i])
+        }
+        console.log(dataList);
+
+        //Pick out a certain number of cards
+        for (let i = 0; i < numberOfCards; i++) {
+          data.push(dataList.splice(Math.floor(Math.random() * dataList.length), 1)[0])
+        }
+        return data;
+      } else if (languageType == "") {
+        chooseLanguage();
       } else {
         console.log("It broke");
       }
@@ -143,8 +160,6 @@
       questionMod = questionMod.replaceAll('\n', '<br>');
       return questionMod
     }
-
-    var data = changeLanguage();
 
     function resetData() {
       var data = changeLanguage();
@@ -260,18 +275,35 @@
       let multchoice2 = document.getElementById("mult2choice");
       let multchoice3 = document.getElementById("mult3choice");
       let multchoice4 = document.getElementById("mult4choice");
+      let choose = document.getElementById('choose');
+      let dropdown = document.getElementById('dropMenu');
       if (questionList[cardIndex][3] === '0') {
         answerBox.style.display = "block"
         multChoiceBtn.style.display = "none"
+        choose.style.display = "none"
+        dropMenu.style.display = "block"
       } else if (questionList[cardIndex][3] === '1') {
         answerBox.style.display = "none"
         multChoiceBtn.style.display = "block"
+        choose.style.display = "none"
+        dropMenu.style.display = "block"
         xyz = questionList[cardIndex][2]
         multchoice1.innerHTML = xyz[0];
         multchoice2.innerHTML = xyz[1];
         multchoice3.innerHTML = xyz[2];
         multchoice4.innerHTML = xyz[3];
       }
+    }
+
+    function chooseLanguage() {
+      let answerBox = document.getElementById('answerbox');
+      let multChoiceBtn = document.getElementById('multiplechoice');
+      let choose = document.getElementById('choose');
+      let dropMenu = document.getElementById('dropMenu');
+      answerBox.style.display = "none";
+      multChoiceBtn.style.display = "none";
+      choose.style.display = "block";
+      dropMenu.style.display = "none";
     }
 
     function deselectButtons() {
@@ -283,7 +315,7 @@
     }
 
     function resetCards() {
-      location.reload();
+      resetData()
     }
   </script>
 </head>
@@ -299,7 +331,7 @@
           <div class="dropdown-content">
             <a onclick="languageTypePicker('data_java')" href="#">Javascript</a>
             <a onclick="languageTypePicker('data_py')" href="#">Python</a>
-            <a href="#">HTML</a>
+            <a onclick="languageTypePicker('data_html')" href="#">HTML</a>
           </div>
         </div>
       </div>
@@ -328,6 +360,18 @@
         <div id="buttons">
           <button type="button" onclick="submitCard()">Submit</button>
           <button type="button" onclick="nextCard()">Next Card</button>
+        </div>
+      </div>
+      <div id="choose">
+        <div id="dropMenu1">
+          <div class="dropdown">
+            <h1><button class="dropbtn">Choose a Language Type</button></h1>
+            <div class="dropdown-content">
+              <a onclick="languageTypePicker('data_java')" href="#">Javascript</a>
+              <a onclick="languageTypePicker('data_py')" href="#">Python</a>
+              <a onclick="languageTypePicker('data_html')" href="#">HTML</a>
+            </div>
+          </div>
         </div>
       </div>
       <div id="multiplechoice">
@@ -360,7 +404,12 @@
   </div>
 
   <script type="text/javascript">
-    nextCard();
+    if (languageType == "") {
+        console.log("hello");
+        resetData()
+    } else {
+        nextCard();
+    }
     document.getElementById('cardAnswer').addEventListener('keydown', function(e) {
       if (e.key == 'Tab') {
         e.preventDefault();
